@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item android:id="@+id/create_category"-->
+<!--          android:icon="@drawable/baseline_menu_24"-->
+<!--          android:title="CreateCategory"-->
+<!--          app:showAsAction="ifRoom"/>-->
+
+    <item android:id="@+id/m_create"
+        android:icon="@drawable/baseline_menu_24"
+        android:title="CreateCategory"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/m_home"
+        android:icon="@drawable/baseline_menu_24"
+        android:title="Home"/>
+
+</menu>
