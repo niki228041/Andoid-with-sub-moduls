@@ -3,6 +3,7 @@ package com.example.sim;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.sim.category.CategoriesAdapter;
+import com.example.sim.category.CategoryCreateActivity;
+import com.example.sim.category.CategoryEditActivity;
 import com.example.sim.dto.category.CategoryItemDTO;
 import com.example.sim.service.CategoryNetwork;
 import com.example.sim.utils.CommonUtils;
@@ -109,6 +112,11 @@ public class MainActivity extends BaseActivity {
 
 
     void onClickEditCategory(CategoryItemDTO categoryItemDTO){
+        Intent intent;
+        intent=new Intent(MainActivity.this, CategoryEditActivity.class);
+        intent.putExtra("CATEGORY_ITEM", categoryItemDTO);
+        startActivity(intent);
+        finish();
         Toast.makeText(this, "Edit", Toast.LENGTH_SHORT).show();
     }
 }
