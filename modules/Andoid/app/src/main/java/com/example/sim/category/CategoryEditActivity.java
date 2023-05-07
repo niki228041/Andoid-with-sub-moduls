@@ -21,10 +21,9 @@ import com.example.sim.MainActivity;
 import com.example.sim.R;
 import com.example.sim.application.HomeApplication;
 import com.example.sim.contants.Urls;
-import com.example.sim.dto.category.CategoryCreateDTO;
 import com.example.sim.dto.category.CategoryItemDTO;
 import com.example.sim.dto.category.CategoryUpdateDTO;
-import com.example.sim.service.CategoryNetwork;
+import com.example.sim.service.ApplicationNetwork;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -236,8 +235,8 @@ public class CategoryEditActivity extends AppCompatActivity {
         model.setDescription(txtCategoryDescription.getText().toString());
         model.setImageBase64(uriGetBase64(uri));
         model.setId(id);
-        CategoryNetwork.getInstance()
-                .getJsonApi()
+        ApplicationNetwork.getInstance()
+                .getCategoriesJsonApi()
                 .update(model)
                 .enqueue(new Callback<Void>() {
                     @Override

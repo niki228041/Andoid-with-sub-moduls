@@ -3,6 +3,7 @@ package com.example.sim.network;
 import com.example.sim.dto.category.CategoryCreateDTO;
 import com.example.sim.dto.category.CategoryItemDTO;
 import com.example.sim.dto.category.CategoryUpdateDTO;
+import com.example.sim.dto.user.LoginDTO;
 
 import java.util.List;
 import retrofit2.Call;
@@ -28,4 +29,5 @@ public interface CategoriesApi {
 
     @PUT("/api/categories/update")
     public Call<Void> update( @Body CategoryUpdateDTO model);
+
 }

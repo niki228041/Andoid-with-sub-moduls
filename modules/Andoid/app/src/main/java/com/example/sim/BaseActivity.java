@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sim.auth.UserLoginActivity;
 import com.example.sim.category.CategoryCreateActivity;
 import com.example.sim.utils.CommonUtils;
 
@@ -48,6 +49,15 @@ public class BaseActivity extends AppCompatActivity {
                     System.out.println("Problem" + ex.getMessage());
                 }
                 return true;
+            case R.id.m_login:
+                try{
+                    intent=new Intent(BaseActivity.this, UserLoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                catch (Exception ex){
+                    System.out.println("Problem with Login Page" + ex.getMessage());
+                }
             default:
                 return super.onOptionsItemSelected(menuItem);
         }

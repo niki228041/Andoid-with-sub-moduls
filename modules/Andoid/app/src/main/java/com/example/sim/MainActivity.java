@@ -11,10 +11,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.sim.category.CategoriesAdapter;
-import com.example.sim.category.CategoryCreateActivity;
 import com.example.sim.category.CategoryEditActivity;
 import com.example.sim.dto.category.CategoryItemDTO;
-import com.example.sim.service.CategoryNetwork;
+import com.example.sim.service.ApplicationNetwork;
 import com.example.sim.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -56,9 +55,9 @@ public class MainActivity extends BaseActivity {
 
 
     void requestServer() {
-        CategoryNetwork
+        ApplicationNetwork
                 .getInstance()
-                .getJsonApi()
+                .getCategoriesJsonApi()
                 .list()
                 .enqueue(new Callback<List<CategoryItemDTO>>() {
                     @Override
@@ -81,9 +80,9 @@ public class MainActivity extends BaseActivity {
     }
 
     void onClickDeleteCategory(CategoryItemDTO categoryItemDTO){
-        CategoryNetwork
+        ApplicationNetwork
                 .getInstance()
-                .getJsonApi()
+                .getCategoriesJsonApi()
                 .delete(String.valueOf(categoryItemDTO.getId()))
                 .enqueue(new Callback<Void>() {
                     @Override

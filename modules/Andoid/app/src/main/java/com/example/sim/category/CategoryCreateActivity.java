@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,7 +18,7 @@ import com.example.sim.ChangeImageActivity;
 import com.example.sim.MainActivity;
 import com.example.sim.R;
 import com.example.sim.dto.category.CategoryCreateDTO;
-import com.example.sim.service.CategoryNetwork;
+import com.example.sim.service.ApplicationNetwork;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -199,15 +198,6 @@ public class CategoryCreateActivity extends AppCompatActivity {
         if(!validation())
             return;
 
-//        Intent intent = new Intent();
-//
-//
-//        String croppedUri = intent.getStringExtra("croppedUri");
-//
-//// Check if the value is null or empty
-//        if (croppedUri == null || croppedUri.isEmpty()) {
-//            return;
-//        }
 
 
         CategoryCreateDTO model = new CategoryCreateDTO();
@@ -215,8 +205,8 @@ public class CategoryCreateActivity extends AppCompatActivity {
         model.setPriority(Integer.parseInt(txtCategoryPriority.getText().toString()));
         model.setDescription(txtCategoryDescription.getText().toString());
         model.setImageBase64(uriGetBase64(uri));
-        CategoryNetwork.getInstance()
-                .getJsonApi()
+        ApplicationNetwork.getInstance()
+                .getCategoriesJsonApi()
                 .create(model)
                 .enqueue(new Callback<Void>() {
                     @Override
