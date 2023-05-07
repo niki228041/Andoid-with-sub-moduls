@@ -19,5 +19,9 @@
         android:icon="@drawable/baseline_menu_24"
         android:title="Login"/>
 
+    <item android:id="@+id/m_registration"
+        android:icon="@drawable/baseline_menu_24"
+        android:title="Registration"/>
+
 </menu>
 

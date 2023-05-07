@@ -3,4 +3,12 @@
     <string name="category_name_required">Вкажіть назву. Довжина має бути не менше 3 символів</string>
     <string name="category_priority_required">Вкажіть пріорітет. Значення має бути більше 0</string>
     <string name="category_description_required">Вкажіть опис. Довжина має бути не менше 3 символів</string>
+
+    <string name="user_firstname_required">Вкажіть імя</string>
+    <string name="user_lastname_required">Вкажіть прізвище</string>
+    <string name="user_password_required">Вкажіть пароль</string>
+    <string name="user_confirm_password_required">Вкажіть пароль знову</string>
+    <string name="user_confirm_password_with_password_required">Паролі не збігаються</string>
+    <string name="user_email_required">Вкажіть емайл</string>
+
 </resources>

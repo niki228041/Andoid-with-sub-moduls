@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sim.auth.UserLoginActivity;
+import com.example.sim.auth.UserRegistrationActivity;
 import com.example.sim.category.CategoryCreateActivity;
 import com.example.sim.utils.CommonUtils;
 
@@ -57,6 +58,15 @@ public class BaseActivity extends AppCompatActivity {
                 }
                 catch (Exception ex){
                     System.out.println("Problem with Login Page" + ex.getMessage());
+                }
+            case R.id.m_registration:
+                try {
+                    intent=new Intent(BaseActivity.this, UserRegistrationActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                catch (Exception ex){
+                    System.out.println("Problem with Registration Page" + ex.getMessage());
                 }
             default:
                 return super.onOptionsItemSelected(menuItem);
