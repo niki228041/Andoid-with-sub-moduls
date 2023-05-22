@@ -19,10 +19,14 @@ import com.example.sim.MainActivity;
 import com.example.sim.R;
 import com.example.sim.category.CategoryCreateActivity;
 import com.example.sim.dto.category.CategoryCreateDTO;
+import com.example.sim.dto.user.LoginResponse;
 import com.example.sim.dto.user.RegistrationDTO;
+import com.example.sim.dto.user.ValidationRegisterDTO;
 import com.example.sim.service.ApplicationNetwork;
+import com.example.sim.utils.CommonUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -255,6 +259,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         registrationDTO.setConfirmPassword(txtConfirmPassword.getText().toString());
         registrationDTO.setImageBase64(uriGetBase64(uri));
 
+        RegistrationDTO d = registrationDTO;
 
 
         ApplicationNetwork.getInstance()
@@ -263,17 +268,77 @@ public class UserRegistrationActivity extends AppCompatActivity {
                 .enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Intent intent = new Intent(UserRegistrationActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Boolean resp_ = response.isSuccessful();
+                        Boolean resp__ = resp_;
+
+                        if(response.isSuccessful()) {
+                            Intent intent = new Intent(UserRegistrationActivity.this, UserLoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            try {
+                                String resp = response.errorBody().string();
+                                showErrorsServer(resp);
+                            }catch(Exception ex) {
+                                System.out.println("Error try");;
+                            }
+
+                        }
+                        CommonUtils.hideLoading();
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        CommonUtils.hideLoading();
                     }
                 });
 
+    }
+
+    private void showErrorsServer(String json){
+        ValidationRegisterDTO result = new Gson().fromJson(json,ValidationRegisterDTO.class);
+        String str="";
+
+        if(result.getErrors().getEmail()!=null){
+            for(String item: result.getErrors().getEmail()){
+                str=item;
+            }
+        }
+
+        if(result.getErrors().getFirstName()!=null){
+            for(String item: result.getErrors().getFirstName()){
+                str=item;
+            }
+        }
+
+        if(result.getErrors().getLastName()!=null){
+            for(String item: result.getErrors().getLastName()){
+                str=item;
+            }
+        }
+
+        if(result.getErrors().getPassword()!=null){
+            for(String item: result.getErrors().getPassword()){
+                str=item;
+            }
+        }
+
+        if(result.getErrors().getConfirmPassword()!=null){
+            for(String item: result.getErrors().getConfirmPassword()){
+                str=item;
+            }
+        }
+
+        if(result.getErrors().getImageBase64()!=null){
+            for(String item: result.getErrors().getImageBase64()){
+                str=item;
+            }
+        }
+
+        String str_ = str;
+
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
     private String uriGetBase64(Uri uri) {

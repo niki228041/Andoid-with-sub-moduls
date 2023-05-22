@@ -10,11 +10,18 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.sim.application.HomeApplication;
 import com.example.sim.category.CategoriesAdapter;
 import com.example.sim.category.CategoryEditActivity;
 import com.example.sim.dto.category.CategoryItemDTO;
+import com.example.sim.dto.category.ListRequestDTO;
+import com.example.sim.dto.user.DecodedToken;
+import com.example.sim.security.JwtSecurityService;
 import com.example.sim.service.ApplicationNetwork;
 import com.example.sim.utils.CommonUtils;
+import com.google.gson.Gson;
+
+import org.apache.commons.codec.binary.Base64;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +62,16 @@ public class MainActivity extends BaseActivity {
 
 
     void requestServer() {
+
+        JwtSecurityService jwt = HomeApplication.getInstance();
+        String token = jwt.getToken();
+        ListRequestDTO listRequest = new ListRequestDTO();
+        listRequest.setEmail(emailDecodeJWT(token));
+
         ApplicationNetwork
                 .getInstance()
                 .getCategoriesJsonApi()
-                .list()
+                .list(listRequest)
                 .enqueue(new Callback<List<CategoryItemDTO>>() {
                     @Override
                     public void onResponse(Call<List<CategoryItemDTO>> call, Response<List<CategoryItemDTO>> response) {
@@ -75,8 +88,29 @@ public class MainActivity extends BaseActivity {
                         CommonUtils.hideLoading();
                     }
                 });
+    }
+
+    public String emailDecodeJWT(String token){
+        System.out.println("------------ Decode JWT ------------");
+        String[] split_string = token.split("\\.");
+        String base64EncodedHeader = split_string[0];
+        String base64EncodedBody = split_string[1];
+        String base64EncodedSignature = split_string[2];
+
+        System.out.println("~~~~~~~~~ JWT Header ~~~~~~~");
+        Base64 base64Url = new Base64(true);
+        String header = new String(base64Url.decode(base64EncodedHeader));
+        System.out.println("JWT Header : " + header);
 
 
+        System.out.println("~~~~~~~~~ JWT Body ~~~~~~~");
+        String body = new String(base64Url.decode(base64EncodedBody));
+        System.out.println("JWT Body : "+ body);
+
+        Gson gson = new Gson(); // Or use new GsonBuilder().create();
+        DecodedToken decodedToken = gson.fromJson(body, DecodedToken.class); // deserializes json into target2
+
+        return decodedToken.name;
     }
 
     void onClickDeleteCategory(CategoryItemDTO categoryItemDTO){

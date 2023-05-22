@@ -2,10 +2,13 @@ package com.example.sim.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class HomeApplication extends Application {
+import com.example.sim.security.JwtSecurityService;
+
+public class HomeApplication extends Application implements JwtSecurityService {
     private static HomeApplication instance;
     private static Context appContext;
 
@@ -24,4 +27,95 @@ public class HomeApplication extends Application {
     public static Context getAppContext() {
         return appContext;
     }
+
+    @Override
+    public void saveJwtToken(String token) {
+        SharedPreferences prefs;
+        SharedPreferences.Editor edit;
+        prefs =  instance.getSharedPreferences("jwtStore", MODE_PRIVATE);
+        edit=prefs.edit();
+        try {
+            edit.putString("token",token);
+            edit.commit();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getToken() {
+        SharedPreferences prefs=instance.getSharedPreferences("jwtStore", Context.MODE_PRIVATE);
+        String token = prefs.getString("token","");
+        return token;
+    }
+
+    @Override
+    public void deleteToken() {
+        SharedPreferences prefs;
+        SharedPreferences.Editor edit;
+        prefs = instance.getSharedPreferences("jwtStore",Context.MODE_PRIVATE);
+        edit = prefs.edit();
+
+        try {
+            edit.remove("token");
+            edit.apply();
+            edit.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @Override
+    public boolean isAuth() {
+        if(getToken().equals(""))
+            return false;
+
+        return true;
+    }
+
+//    @Override
+//    public void saveRole(String role) {
+//        SharedPreferences prefs;
+//        SharedPreferences.Editor edit;
+//        prefs =  instance.getSharedPreferences("roleStore", MODE_PRIVATE);
+//        edit=prefs.edit();
+//
+//        try {
+//            edit.putString("role",role);
+//            edit.commit();
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public String getRole() {
+//        SharedPreferences prefs=instance.getSharedPreferences("roleStore", Context.MODE_PRIVATE);
+//        String token = prefs.getString("role","");
+//        return token;
+//    }
+//
+//    @Override
+//    public void deleteRole() {
+//        SharedPreferences prefs;
+//        SharedPreferences.Editor edit;
+//        prefs = instance.getSharedPreferences("roleStore",Context.MODE_PRIVATE);
+//        edit = prefs.edit();
+//
+//        try {
+//            edit.remove("role");
+//            edit.apply();
+//            edit.commit();
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -6,22 +6,45 @@
 <!--          android:title="CreateCategory"-->
 <!--          app:showAsAction="ifRoom"/>-->
 
-    <item android:id="@+id/m_create"
-        android:icon="@drawable/baseline_menu_24"
-        android:title="CreateCategory"
-        app:showAsAction="never"/>
 
-    <item android:id="@+id/m_home"
-        android:icon="@drawable/baseline_menu_24"
-        android:title="Home"/>
+    <group
+        android:id="@+id/group_anonimus"
+        android:visible="true"
+        >
+        <item android:id="@+id/m_login"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="Login"/>
 
-    <item android:id="@+id/m_login"
-        android:icon="@drawable/baseline_menu_24"
-        android:title="Login"/>
+        <item android:id="@+id/m_registration"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="Registration"/>
+    </group>
 
-    <item android:id="@+id/m_registration"
-        android:icon="@drawable/baseline_menu_24"
-        android:title="Registration"/>
+    <group
+        android:id="@+id/group_auth"
+        android:visible="false">
+
+        <item android:id="@+id/m_profile"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="Profile"/>
+
+        <item android:id="@+id/m_home"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="Home"/>
+
+        <item android:id="@+id/m_create"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="CreateCategory"
+            />
+
+        <item android:id="@+id/m_exit"
+            android:icon="@drawable/baseline_menu_24"
+            android:title="Exit"/>
+    </group>
+
+
+
+
 
 </menu>
 

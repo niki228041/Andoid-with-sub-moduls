@@ -12,17 +12,31 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sim"
         tools:targetApi="31">
+
+        <activity
+            android:name=".auth.UserLoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".auth.UserRegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".auth.UserLoginActivity"
+            android:name=".profile.UserProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ChangeImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.ChangeProfileActivity"
             android:exported="false" />
         <activity
             android:name=".category.CategoryEditActivity"
@@ -32,13 +46,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

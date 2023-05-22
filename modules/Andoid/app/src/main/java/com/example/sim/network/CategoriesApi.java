@@ -3,6 +3,7 @@ package com.example.sim.network;
 import com.example.sim.dto.category.CategoryCreateDTO;
 import com.example.sim.dto.category.CategoryItemDTO;
 import com.example.sim.dto.category.CategoryUpdateDTO;
+import com.example.sim.dto.category.ListRequestDTO;
 import com.example.sim.dto.user.LoginDTO;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public interface CategoriesApi {
 //    @GET("/api/categories/list")
 //    public Call<List<CategoryItemDTO>> list();
 
-    @GET("/api/categories/list")
-    public Call<List<CategoryItemDTO>> list();
+    @POST("/api/categories/list")
+    public Call<List<CategoryItemDTO>> list(@Body ListRequestDTO email);
 
     @DELETE("api/Categories/{id}")
     public Call<Void> delete(@Path("id") String id);
