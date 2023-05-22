@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Sim23.Constants;
 using Sim23.Data;
 using Sim23.Data.Entites;
 using Sim23.Data.Entites.Identity;
@@ -28,20 +29,37 @@ namespace Sim23.Controllers
             _appEFContext = appEFContext;
             _userManager = userManager;
         }
-        [HttpGet("list")]
-        public async Task<IActionResult> Get()
+
+        [HttpPost("list")]
+        public async Task<IActionResult> Get(ListRequestViewModel listRequest)
         {
-            string userName = User.Claims.First().Value;
-            var user = await _userManager.FindByEmailAsync(userName);
+            UserEntity user = await _userManager.FindByEmailAsync(listRequest.email);
+
+            //string userName = User.Claims.First().Value;
+            //var user = await _userManager.FindByEmailAsync(userName);
             Thread.Sleep(1000);
-            var model = await _appEFContext.Categories
-                .Where(x=>x.IsDeleted==false)
-                .Where(x => x.UserId == user.Id)
-                .OrderBy(x=>x.Priority)
-                .Select(x=>_mapper.Map<CategoryItemViewModel>(x))
+            var roles = await _userManager.GetRolesAsync(user);
+            
+            if (roles[0] == Roles.Admin)
+            {
+                var model = await _appEFContext.Categories
+                .Where(x => x.IsDeleted == false)
+                .OrderBy(x => x.Priority)
+                .Select(x => _mapper.Map<CategoryItemViewModel>(x))
                 .ToListAsync();
-           
-            return Ok(model);
+                return Ok(model);
+            }
+            else
+            {
+                var model = await _appEFContext.Categories
+                .Where(x => x.IsDeleted == false)
+                .Where(x => x.UserId == user.Id)
+                .OrderBy(x => x.Priority)
+                .Select(x => _mapper.Map<CategoryItemViewModel>(x))
+                .ToListAsync();
+                return Ok(model);
+            }
+            
         }
 
         [HttpGet("{id}")]
