@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj": {}
+    "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj": {
+    "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
         "projectName": "Android Web Server Begin",
-        "projectPath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
+        "projectPath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\obj\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

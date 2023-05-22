@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xN2T0hd2PCPbuIwAixv6YqGss9DF+ds0BNvbzWrENKj33u138ZC/VYcLJoRrNOorpRHcnzwvWlwZuHka4xjdVQ==",
+  "dgSpecHash": "74hTko2DmQaJM0bfHO2Y7rsyEuFZMqDAn+hEOlY55bmS5qwubIxIHDYLnN6FTmAWcYDidQTAUNkfBc0VgSobhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\Android Web Server Begin\\Project-with-Android-Client\\modules\\BackEnd\\Android Web Server Begin\\Android Web Server Begin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

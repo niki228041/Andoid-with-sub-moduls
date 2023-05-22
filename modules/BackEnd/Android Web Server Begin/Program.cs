@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MyDBContextEF>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 //builder.Services.AddDbContextPool<MyDBContextEF>(
@@ -36,12 +37,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options => options
-    .WithOrigins("http://localhost:3000", "http://localhost:3001", "http://194.44.93.225", "http://10.7.101.243", "http://52.188.227.148", "http://40.76.116.183", "http://192.168.0.104")
-    .AllowAnyHeader()
-    .AllowCredentials()
-    .AllowAnyMethod()
-    );
+//app.UseCors(options => options
+//    .WithOrigins("http://localhost:3000", "http://localhost:3001", "http://194.44.93.225", "http://10.7.101.243", "http://52.188.227.148", "http://40.76.116.183", "http://192.168.0.104")
+//    .AllowAnyHeader()
+//    .AllowCredentials()
+//    .AllowAnyMethod()
+//    );
 
 var dir = Path.Combine(Directory.GetCurrentDirectory(), "images");
 if(!Directory.Exists(dir))
